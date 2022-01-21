@@ -11,6 +11,10 @@ class OtsRsaKey
     /**
      * @var string
      */
+    private $nAsHex;
+    /**
+     * @var string
+     */
     private $nForOTClient;
     /**
      * @var string
@@ -29,9 +33,10 @@ class OtsRsaKey
      */
     private $d;
 
-    public function __construct(string $n, string $nForOTClient, string $keyPem, string $p, string $q, string $d)
+    public function __construct(string $n, string $nAsHex, string $nForOTClient, string $keyPem, string $p, string $q, string $d)
     {
         $this->n = $n;
+        $this->nAsHex = $nAsHex;
         $this->nForOTClient = $nForOTClient;
         $this->keyPem = $keyPem;
         $this->p = $p;
@@ -42,6 +47,11 @@ class OtsRsaKey
     public function getN(): string
     {
         return $this->n;
+    }
+
+    public function getNasHex(): string
+    {
+        return $this->nAsHex;
     }
 
     public function getNForOTClient(): string

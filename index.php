@@ -20,6 +20,8 @@ try {
 <h2>Random RSA generator for OTSes</h2>
 <h3>N (modulus) - for Tibia Client:</h3>
 <input type="text" style="width:100%" value="<?= $randomRsaKey->getN() ?>"/>
+<h3>N (modulus) - for Tibia Client 12+:</h3>
+<input type="text" style="width:100%" value="<?= $randomRsaKey->getNasHex() ?>"/>
 <h3>N (modulus) - for OTClient:</h3>
 <textarea style="width:100%" rows="5"><?= $randomRsaKey->getNForOTClient() ?></textarea>
 <h3>key.pem - for new servers:</h3>

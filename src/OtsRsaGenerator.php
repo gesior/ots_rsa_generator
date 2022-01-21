@@ -24,16 +24,22 @@ class OtsRsaGenerator
             $n = $rawPrivate['n'];
 
             if (strlen($n) === 309) {
+                $nAsHex = $this->convertDecimalToHex($n);
                 $pkcs1Private = $private->toString('PKCS1');
                 $p = $rawPrivate['p'];
                 $q = $rawPrivate['q'];
                 $d = $rawPrivate['d'];
 
-                return new OtsRsaKey($n, $this->formatKeyForOTClient($n), $pkcs1Private, $p, $q, $d);
+                return new OtsRsaKey($n, $nAsHex, $this->formatKeyForOTClient($n), $pkcs1Private, $p, $q, $d);
             }
         }
 
         throw new RuntimeException('Random key generation failed. Try again.');
+    }
+
+    private function convertDecimalToHex(string $decimal): string
+    {
+        return gmp_strval(gmp_init($decimal, 10), 16);
     }
 
     private function formatKeyForOTClient(string $n): string
